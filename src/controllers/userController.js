@@ -31,7 +31,7 @@ const loginUser = async function(req, res){     //1.loginUser
 
         // const token = jwt.sign({userId:user._id, batch:"radon", project:"bookManagement"}, "functionup-radon28");   //expiry pending
         
-        const token = jwt.sign({userId:user._id, batch:"radon", project:"bookManagement"}, "functionup-radon28",  {expiresIn:"300s"});
+        const token = jwt.sign({userId:user._id, batch:"radon", project:"bookManagement"}, "functionup-radon28",  {expiresIn:"72h"});
         const decode = jwt.verify(token, "functionup-radon28", (err, result)=>{
             if(err) return undefined
             else return result;
