@@ -34,11 +34,15 @@ const booksByQuery = async function(req, res){
     
         // if(Object.keys(filters).length === 1) return res.status(400).send({status:false, message: "enter atleast 1 field in query params from userId, category & subCategory"});
     
-        const books = await bookModel.find(filters).select({title:1, excerpt:1, userId:1, category:1, releasedAt:1, reviews:1}).sort({title:1});
-    
+        const books = await bookModel.find(filters).select({title:1, excerpt:1, userId:1, category:1, releasedAt:1, reviews:1}).collation({locale:"en"}).sort({title:1});
+        
         if(books.length === 0) return res.status(404).send({status:false, message:"No match found"});
-    
+
+        // const sortedBooks = books.sort((x,y)=> x.title - y.title);
         return res.status(200).send({status:true, message: "Books list", data:books});
+
+    
+        // return res.status(200).send({status:true, message: "Books list", data:books});
     }catch(error){
         console.log(error)
         return res.status(500).send({status:false, message:error.message})

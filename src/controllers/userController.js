@@ -41,7 +41,7 @@ const loginUser = async function(req, res){     //1.loginUser
            
 
         res.setHeader("x-api-key", token);
-        return res.status(200).send({status:false, message:"login successful", data : {token, issuedAt:iat, expireAt:exp}})
+        return res.status(200).send({status:true, message:"login successful", data : {token, issuedAt:iat, expireAt:exp}})  //one change added
      
     } catch (error) {
         console.log(error);
