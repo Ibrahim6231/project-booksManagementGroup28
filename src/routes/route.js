@@ -5,13 +5,13 @@ const {getBook, createBooks, booksByQuery, deleteBook, updateBook} = require('..
 const {createReview, updateReview, deleteReview} = require('../controllers/reviewController')
 const {validateUser, validateBooks} = require('../middlewares/commonMiddlewares')
 const {authentication, authorisation, authorisationUD} = require('../middlewares/auth')
+const aws = require('aws-sdk')
 
 //user api
 router.post('/register', validateUser, createUser)
 router.post('/login', loginUser)
 
-// //books api
-// router.post('/books', authentication, authorisation, validateBooks,  createBooks)
+//books api
 router.post('/books', authentication, validateBooks,  authorisation, createBooks)
 router.get('/books', authentication, booksByQuery)
 router.get('/books/:bookId', authentication, getBook)
@@ -22,9 +22,8 @@ router.delete('/books/:bookId', authentication, authorisationUD, deleteBook)
 
 //review api
 router.post('/books/:bookId/review', createReview)
-router.put('/books/:bookId/review', updateReview)
-router.delete('/books/:bookId/review', deleteReview)
-
+router.put('/books/:bookId/review/:reviewId', updateReview)
+router.delete('/books/:bookId/review/:reviewId', deleteReview)
 
 
 
@@ -32,3 +31,4 @@ router.delete('/books/:bookId/review', deleteReview)
 
 
 module.exports = router;
+

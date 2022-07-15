@@ -50,10 +50,10 @@ const validateUser = async function(req, res, next) {
     const emailDoc = await userModel.findOne({email: data.email});
     if(emailDoc) duplicate.emailError = `this ${data.email} is already registered`;
 
-    const num = reduceNumber(data.phone)//+91-8792518031, 8792518031
+    const num = reduceNumber(data.phone)//+91-8974569874, 8974569874
     const phoneDoc = await userModel.findOne({phone: new RegExp(num + '$')});    
     if(phoneDoc) duplicate.phoneError = `this ${data.phone} is already registered`;
-    if(Object.keys(duplicate).length > 0) return res.status(400).send({status:false, message:duplicate});   //return
+    if(Object.keys(duplicate).length > 0) return res.status(409).send({status:false, message:duplicate});   //return
     next();
 
     }catch(error){

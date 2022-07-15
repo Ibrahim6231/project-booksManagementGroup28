@@ -28,13 +28,14 @@ function isCategory(x){ return isExcerpt(x)}
 
 //subCategory
 function isSubcategory(x){ 
-    if(!Array.isArray(x)) return false;
-    if(x.length === 0) return false;
-    for(let i=0; i<x.length; i++){
-        if(!x[i]) return false;
-        if(typeof x[i] !== "string") return false;
-        if(x[i].trim().length === 0) return false;
-    }
+    // if(!Array.isArray(x)) return false;
+    if(!x) return false
+    if(x.trim().length === 0) return false;
+    // for(let i=0; i<x.length; i++){
+    //     if(!x[i]) return false;
+    //     if(typeof x[i] !== "string") return false;
+    //     if(x[i].trim().length === 0) return false;
+    // }
     return true
 }
 
